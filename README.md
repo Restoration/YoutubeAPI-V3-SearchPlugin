@@ -10,7 +10,7 @@ Simple implementation of youtube search function.
 
 [Documents](https://developers.google.com/youtube/v3/getting-started?hl=en)
 
-> ###Before you start
+> ### Before you start
 > You need a Google Account to access the Google Developers Console, request an API key, and register your application.
 >
 > Create a project in the Google Developers Console and obtain authorization credentials so your application can submit API requests.
