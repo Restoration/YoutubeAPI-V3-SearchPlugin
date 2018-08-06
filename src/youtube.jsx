@@ -13,6 +13,7 @@ class youtubeForm extends React.Component {
         // Get Parameters
         var params = {
             'part': 'snippet',
+            'type': 'video',
             'q' : document.getElementById('keyword').value,
             'key' : G.USER_API_KEY,
         }
@@ -71,20 +72,7 @@ function renderData(data){
         img.setAttribute("width",imgWidth);
         target.appendChild(link);
         link.appendChild(img);
-        /*
-        image += '<a href=""><img src="'+imgSrc+'" alt="'+title+'" width="'+imgWidth+'" height="'+imgHeight+'"></a>'; 
-        var image = React.createElement('img',{
-            src    : imgSrc,
-            height : imgHeight,
-            width  : imgWidth,
-            alt    : title
-        });
-        //ReactDOM.render(image,imgContainer);
-        var imgContainer =  document.querySelector('#image_container');
-        imgContainer = ReactDOM.findDOMNode(imgContainer);
-        imgContainer.appendChild(image);
-        */
-    }
+   }
 }
 const formContainer = document.querySelector('#youtube_form_container');
 ReactDOM.render(React.createElement(youtubeForm), formContainer);
