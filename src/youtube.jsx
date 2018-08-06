@@ -39,17 +39,52 @@ function execQuery(params){
         }
     }
     var url = G.YOUTUBE_URL+query;
-    console.log(url);
     // Get JSON Data
     return fetch(url)
         .then((response) => response.json())
         .then((responseJson) => {
-        console.log(responseJson);
+        renderData(responseJson);
     })
     .catch((error) => {
         console.error(error);
     });
     return false;
 }
-const domContainer = document.querySelector('#youtube_form_container');
-ReactDOM.render(React.createElement(youtubeForm), domContainer);
+
+function renderData(data){
+    var items = data.items;
+    var target = document.getElementById("image_container");
+    target.innerHTML = "";
+    for (var i = 0; i < items.length; i++){
+        var title     = items[i].snippet.channelTitle;
+        var imgSrc    = items[i].snippet.thumbnails.medium.url; 
+        var imgHeight = items[i].snippet.thumbnails.medium.height;
+        var imgWidth  = items[i].snippet.thumbnails.medium.width;
+        var url       = 'https://www.youtube.com/watch?v='+ items[i].id.videoId;
+        var link = document.createElement("a");
+        link.setAttribute("href",url);
+        link.setAttribute("target","_blank");
+        var img = document.createElement("img");
+        img.setAttribute("src",imgSrc);
+        img.setAttribute("alt",title);
+        img.setAttribute("height",imgHeight);
+        img.setAttribute("width",imgWidth);
+        target.appendChild(link);
+        link.appendChild(img);
+        /*
+        image += '<a href=""><img src="'+imgSrc+'" alt="'+title+'" width="'+imgWidth+'" height="'+imgHeight+'"></a>'; 
+        var image = React.createElement('img',{
+            src    : imgSrc,
+            height : imgHeight,
+            width  : imgWidth,
+            alt    : title
+        });
+        //ReactDOM.render(image,imgContainer);
+        var imgContainer =  document.querySelector('#image_container');
+        imgContainer = ReactDOM.findDOMNode(imgContainer);
+        imgContainer.appendChild(image);
+        */
+    }
+}
+const formContainer = document.querySelector('#youtube_form_container');
+ReactDOM.render(React.createElement(youtubeForm), formContainer);
