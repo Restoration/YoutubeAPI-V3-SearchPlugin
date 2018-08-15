@@ -1,6 +1,4 @@
 # YoutubeAPI V3 Search Plugin
----
-
 
 ## Description
 
